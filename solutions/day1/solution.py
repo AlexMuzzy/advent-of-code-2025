@@ -3,7 +3,11 @@ from typing import List
 
 def compute_left(amount: int, val: int) -> int:
     if amount > val:
-        return 100 - (amount % val if val != 0 else amount)
+        result = 100 - (amount - val) % 100
+
+        if result == 100:
+            return 0
+        return result
     else:
         return val - amount
 
@@ -11,6 +15,7 @@ def compute_left(amount: int, val: int) -> int:
 def compute_right(amount: int, val: int) -> int:
     if amount + val > 99:
         return (amount + val) % 100
+
     else:
         return val + amount
 
@@ -30,6 +35,8 @@ def solve(input: List[str]) -> int:
     for combination in input:
         (direction, amount) = (combination[:1], int(combination[1:]))
         val = compute_amount(direction, amount, val)
+
+        print(f"Key={combination} Value={val} {'Bug!' if val == 100 else ''}")
 
         if val == 0:
             count += 1
