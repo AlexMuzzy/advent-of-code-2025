@@ -4,7 +4,9 @@ from typing import List, Tuple
 
 def compute_left(amount: int, val: int) -> Tuple[int]:
     if not amount > val:
-        return (val - amount, 0)
+        result = val - amount
+        count = 1 if result == 0 else 0
+        return (result, count)
 
     calc = 100 - (amount - val)
     result = calc % 100
@@ -12,14 +14,19 @@ def compute_left(amount: int, val: int) -> Tuple[int]:
     if result == 100:
         return 0
 
-    count = math.ceil(calc / 100)
+    if val == 0:
+        count = amount // 100
+    else:
+        count = (amount - val) // 100 + 1
 
     return (result, count)
 
 
 def compute_right(amount: int, val: int) -> Tuple[int]:
     if not amount + val > 99:
-        return (val + amount, 0)
+        result = val + amount
+        count = 1 if result == 0 else 0
+        return (result, count)
 
     calc = amount + val
     result = calc % 100
@@ -46,16 +53,16 @@ def compute_amount(
     return (result, count)
 
 
-def solve(input: List[str], count_ticks: bool = False) -> int:
+def solve(i: List[str], count_ticks: bool = False) -> int:
     val = 50
     count = 0
 
-    for combination in input:
+    for combination in i:
         (direction, amount) = (combination[:1], int(combination[1:]))
         (val1, count1) = compute_amount(direction, amount, val, count_ticks)
         val = val1
         count = count + count1
 
-        print(f"(Key={combination} Value={val} Count={count})")
+        print(f"(Key={combination} Value={val} Count={count1})")
 
     return count

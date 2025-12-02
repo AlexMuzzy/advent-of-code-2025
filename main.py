@@ -7,7 +7,9 @@ def get_file_input(day: int, part: int, is_sample: Optional[bool] = False):
     with open(
         path.join(
             "inputs", f"day{day}", f"part{part}{'-sample' if is_sample else ''}.txt"
-        )
+        ),
+        "r",
+        encoding="utf-8",
     ) as f:
         return f.read().splitlines()
 
