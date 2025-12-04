@@ -53,7 +53,7 @@ def compute_amount(
     return (result, count)
 
 
-def solveDay1(i: List[str], count_ticks: bool = False) -> int:
+def solve_day1(i: List[str], count_ticks: bool = False) -> int:
     val = 50
     count = 0
 

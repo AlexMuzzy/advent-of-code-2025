@@ -1,4 +1,4 @@
-def solveDay2(input: str) -> int:
+def solve_day2_part1(input: str) -> int:
     sumOfInvalidIds = 0
     separatedList = input.split(",")
 
