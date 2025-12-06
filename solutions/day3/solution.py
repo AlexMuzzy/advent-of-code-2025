@@ -25,7 +25,6 @@ def solve_day3(input: List[str], v_count: int):
             )
             sum_string += j1
 
-        print(f"Result={sum_string}")
         r += int(sum_string)
 
     return r

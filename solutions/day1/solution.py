@@ -63,6 +63,4 @@ def solve_day1(i: List[str], count_ticks: bool = False) -> int:
         val = val1
         count = count + count1
 
-        print(f"(Key={combination} Value={val} Count={count1})")
-
     return count

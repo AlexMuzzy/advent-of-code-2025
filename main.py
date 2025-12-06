@@ -7,9 +7,7 @@ from solutions.day3.solution import solve_day3
 
 def get_file_input_by_lines(day: int, part: int, is_sample: Optional[bool] = False):
     with open(
-        path.join(
-            "inputs", f"day{day}", f"part{part}{'-sample' if is_sample else ''}.txt"
-        ),
+        path.join("inputs", f"day{day}", f"{'sample' if is_sample else 'data'}.txt"),
         "r",
         encoding="utf-8",
     ) as f:
