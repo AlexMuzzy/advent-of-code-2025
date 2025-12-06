@@ -3,6 +3,7 @@ from typing import Optional
 from solutions.day1.solution import solve_day1
 from solutions.day2.solution import solve_day2_part2, solve_day2_part1
 from solutions.day3.solution import solve_day3
+from solutions.day4.solution import solve_day4
 
 
 def get_file_input_by_lines(day: int, part: int, is_sample: Optional[bool] = False):
@@ -38,6 +39,11 @@ def main():
 
     print(f"Day 3 - part 2: {solve_day3(day3_input, 12)}")
     print(f"Day 3 - part 2 - sample: {solve_day3(day3_sample_input, 12)}")
+
+    day4_input = get_file_input_by_lines(4, 1)
+    day4_sample_input = get_file_input_by_lines(4, 1, True)
+    # print(f"Day 4 - part 1: {solve_day4(day4_input)}")
+    print(f"Day 4 - part 1 - sample: {solve_day4(day4_sample_input)}")
 
 
 if __name__ == "__main__":
