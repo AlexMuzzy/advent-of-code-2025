@@ -3,10 +3,10 @@ from typing import Optional
 from solutions.day1.solution import solve_day1
 from solutions.day2.solution import solve_day2_part2, solve_day2_part1
 from solutions.day3.solution import solve_day3
-from solutions.day4.solution import solve_day4
+from solutions.day4.solution import solve_day4_part1, solve_day4_part2
 
 
-def get_file_input_by_lines(day: int, part: int, is_sample: Optional[bool] = False):
+def get_file_input_by_lines(day: int, is_sample: Optional[bool] = False):
     with open(
         path.join("inputs", f"day{day}", f"{'sample' if is_sample else 'data'}.txt"),
         "r",
@@ -16,34 +16,41 @@ def get_file_input_by_lines(day: int, part: int, is_sample: Optional[bool] = Fal
 
 
 def main():
-    day1_input = get_file_input_by_lines(1, 1)
-    day1_sample_input = get_file_input_by_lines(1, 1, True)
+    day1_input = get_file_input_by_lines(1)
+    day1_sample_input = get_file_input_by_lines(1, True)
     print(f"Day 1 - part 1: {solve_day1(day1_input)}")
     print(f"Day 1 - part 1 - sample: {solve_day1(day1_sample_input)}")
 
     print(f"Day 1 - part 2: {solve_day1(day1_input, True)}")
     print(f"Day 1 - part 2 - sample: {solve_day1(day1_sample_input, True)}")
 
-    day2_input = get_file_input_by_lines(2, 1)[0]
-    day2_sample_input = get_file_input_by_lines(2, 1, True)[0]
+    day2_input = get_file_input_by_lines(2)[0]
+    day2_sample_input = get_file_input_by_lines(2, True)[0]
     print(f"Day 2 - part 1: {solve_day2_part1(day2_input)}")
     print(f"Day 2 - part 1 - sample: {solve_day2_part1(day2_sample_input)}")
 
     print(f"Day 2 - part 2: {solve_day2_part2(day2_input)}")
     print(f"Day 2 - part 2 - sample: {solve_day2_part2(day2_sample_input)}")
 
-    day3_input = get_file_input_by_lines(3, 1)
-    day3_sample_input = get_file_input_by_lines(3, 1, True)
+    day3_input = get_file_input_by_lines(3)
+    day3_sample_input = get_file_input_by_lines(3, True)
     print(f"Day 3 - part 1: {solve_day3(day3_input, 2)}")
     print(f"Day 3 - part 1 - sample: {solve_day3(day3_sample_input, 2)}")
 
     print(f"Day 3 - part 2: {solve_day3(day3_input, 12)}")
     print(f"Day 3 - part 2 - sample: {solve_day3(day3_sample_input, 12)}")
 
-    day4_input = get_file_input_by_lines(4, 1)
-    day4_sample_input = get_file_input_by_lines(4, 1, True)
-    # print(f"Day 4 - part 1: {solve_day4(day4_input)}")
-    print(f"Day 4 - part 1 - sample: {solve_day4(day4_sample_input)}")
+    day4_input = get_file_input_by_lines(4)
+    day4_sample_input = get_file_input_by_lines(4, True)
+    (_, day4_result) = solve_day4_part1(day4_input)
+    (_, day4_sample_result) = solve_day4_part1(day4_sample_input)
+    print(f"Day 4 - part 1: {day4_result}")
+    print(f"Day 4 - part 1 - sample: {day4_sample_result}")
+
+    day4_input = get_file_input_by_lines(4)
+    day4_sample_input = get_file_input_by_lines(4, True)
+    print(f"Day 4 - part 2: {solve_day4_part2(day4_input)}")
+    print(f"Day 4 - part 2 - sample: {solve_day4_part2(day4_sample_input)}")
 
 
 if __name__ == "__main__":
