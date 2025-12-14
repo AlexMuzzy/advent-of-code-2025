@@ -5,6 +5,7 @@ from solutions.day2.solution import solve_day2_part2, solve_day2_part1
 from solutions.day3.solution import solve_day3
 from solutions.day4.solution import solve_day4_part1, solve_day4_part2
 from solutions.day5.solution import solve_day5_part1, solve_day5_part2
+from solutions.day6.solution import solve_day6_part1
 
 
 def get_file_input_by_lines(day: int, is_sample: Optional[bool] = False):
@@ -60,6 +61,11 @@ def main():
 
     print(f"Day 5 - part 2: {solve_day5_part2(day5_input)}")
     print(f"Day 5 - part 2 - sample: {solve_day5_part2(day5_sample_input)}")
+
+    day6_input = get_file_input_by_lines(6)
+    day6_sample_input = get_file_input_by_lines(6, True)
+    print(f"Day 6 - part 1: {solve_day6_part1(day6_input)}")
+    print(f"Day 6 - part 1 - sample: {solve_day6_part1(day6_sample_input)}")
 
 
 if __name__ == "__main__":
