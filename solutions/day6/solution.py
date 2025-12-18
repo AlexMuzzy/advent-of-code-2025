@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 
 def tranpose_cols_to_rows(input: List[str]) -> List[str]:
@@ -16,23 +16,46 @@ def tranpose_cols_to_rows(input: List[str]) -> List[str]:
     return output
 
 
+def transpose_cols_to_rows_with_direction(input: List[str]) -> List[Tuple[List[str], bool]]:
+    if not input:
+        return []
+
+    # Find column start positions from operator row
+    operator_row = input[-1]
+    col_starts = [i for i, c in enumerate(operator_row) if c in '+*']
+
+    result = []
+    for i, start in enumerate(col_starts):
+        end = col_starts[i + 1] if i + 1 < len(col_starts) else len(operator_row)
+        values = []
+        is_left_padded = False
+
+        for line in input:
+            slot = line[start:end]
+            values.append(slot.strip())
+            # Check if number row has leading space
+            if slot[0] == ' ' and slot.strip() not in '+-*/':
+                is_left_padded = True
+
+        result.append((values, not is_left_padded))
+
+    return result
+
+
 def transpose_col_values_to_row_values(input: List[str]) -> List[str]:
-    row_input = tranpose_cols_to_rows(input)
+    row_input = transpose_cols_to_rows_with_direction(input)
     output = []
-    num_problems = len(row_input)
-    is_forward = (num_problems % 2 == 1)
-    for i in row_input:
+    for values, is_forward in row_input:
         map: Dict[int, str] = {}
-        for j in i[:-1]:
+        for j in values[:-1]:  # All values except the operator
             for idx, k in enumerate(j if is_forward else reversed(j)):
                 if idx in map:
                     map[idx] = map[idx] + k
                 else:
                     map[idx] = k
 
-        is_forward = not is_forward
-        print(f"map: {map} is_forward: {is_forward} i: {i}")
-        output.append(list(map.values()) + [i[-1]])
+        print(f"map: {map} is_forward: {is_forward} values: {values}")
+        output.append(list(map.values()) + [values[-1]])  # Append operator
 
     return output
 
