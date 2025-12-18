@@ -19,15 +19,19 @@ def tranpose_cols_to_rows(input: List[str]) -> List[str]:
 def transpose_col_values_to_row_values(input: List[str]) -> List[str]:
     row_input = tranpose_cols_to_rows(input)
     output = []
+    num_problems = len(row_input)
+    is_forward = (num_problems % 2 == 1)
     for i in row_input:
         map: Dict[int, str] = {}
         for j in i[:-1]:
-            for idx, k in enumerate(j):
+            for idx, k in enumerate(j if is_forward else reversed(j)):
                 if idx in map:
                     map[idx] = map[idx] + k
                 else:
                     map[idx] = k
 
+        is_forward = not is_forward
+        print(f"map: {map} is_forward: {is_forward} i: {i}")
         output.append(list(map.values()) + [i[-1]])
 
     return output
@@ -50,5 +54,4 @@ def solve_day6_part1(input: List[str]) -> int:
 
 
 def solve_day6_part2(input: List[str]) -> int:
-    parsed_input = transpose_col_values_to_row_values(input)
-    print(parsed_input)
+    return sum(compute_line(line) for line in transpose_col_values_to_row_values(input))

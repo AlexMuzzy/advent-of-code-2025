@@ -67,7 +67,7 @@ def main():
     print(f"Day 6 - part 1: {solve_day6_part1(day6_input)}")
     print(f"Day 6 - part 1 - sample: {solve_day6_part1(day6_sample_input)}")
 
-    # print(f"Day 6 - part 2: {solve_day6_part2(day5_input)}")
+    print(f"Day 6 - part 2: {solve_day6_part2(day6_input)}")
     print(f"Day 6 - part 2 - sample: {solve_day6_part2(day6_sample_input)}")
 
 
