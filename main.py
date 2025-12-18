@@ -1,11 +1,11 @@
 from os import path
 from typing import Optional
-from solutions.day1.solution import solve_day1
-from solutions.day2.solution import solve_day2_part2, solve_day2_part1
-from solutions.day3.solution import solve_day3
-from solutions.day4.solution import solve_day4_part1, solve_day4_part2
-from solutions.day5.solution import solve_day5_part1, solve_day5_part2
-from solutions.day6.solution import solve_day6_part1, solve_day6_part2
+from solutions.day1 import solve_day1
+from solutions.day2 import solve_day2_part2, solve_day2_part1
+from solutions.day3 import solve_day3
+from solutions.day4 import solve_day4_part1, solve_day4_part2
+from solutions.day5 import solve_day5_part1, solve_day5_part2
+from solutions.day6 import solve_day6_part1, solve_day6_part2
 
 
 def get_file_input_by_lines(day: int, is_sample: Optional[bool] = False):
