@@ -34,7 +34,7 @@ def transpose_cols_to_rows_with_direction(input: List[str]) -> List[Tuple[List[s
             slot = line[start:end]
             values.append(slot.strip())
             # Check if number row has leading space
-            if slot[0] == ' ' and slot.strip() not in '+-*/':
+            if slot[0] == ' ' and slot.strip() not in '+*':
                 is_left_padded = True
 
         result.append((values, not is_left_padded))
@@ -47,15 +47,14 @@ def transpose_col_values_to_row_values(input: List[str]) -> List[str]:
     output = []
     for values, is_forward in row_input:
         map: Dict[int, str] = {}
-        for j in values[:-1]:  # All values except the operator
+        for j in values[:-1]:
             for idx, k in enumerate(j if is_forward else reversed(j)):
                 if idx in map:
                     map[idx] = map[idx] + k
                 else:
                     map[idx] = k
 
-        print(f"map: {map} is_forward: {is_forward} values: {values}")
-        output.append(list(map.values()) + [values[-1]])  # Append operator
+        output.append(list(map.values()) + [values[-1]])
 
     return output
 
