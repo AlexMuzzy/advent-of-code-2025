@@ -1,7 +1,7 @@
 from typing import Dict, List, Tuple
 
 
-def tranpose_cols_to_rows(input: List[str]) -> List[str]:
+def tranpose_cols_to_rows(input: List[str]) -> List[List[str]]:
     if not input:
         return []
 
@@ -16,13 +16,15 @@ def tranpose_cols_to_rows(input: List[str]) -> List[str]:
     return output
 
 
-def transpose_cols_to_rows_with_direction(input: List[str]) -> List[Tuple[List[str], bool]]:
+def transpose_cols_to_rows_with_direction(
+    input: List[str],
+) -> List[Tuple[List[str], bool]]:
     if not input:
         return []
 
     # Find column start positions from operator row
     operator_row = input[-1]
-    col_starts = [i for i, c in enumerate(operator_row) if c in '+*']
+    col_starts = [i for i, c in enumerate(operator_row) if c in "+*"]
 
     result = []
     for i, start in enumerate(col_starts):
@@ -34,7 +36,7 @@ def transpose_cols_to_rows_with_direction(input: List[str]) -> List[Tuple[List[s
             slot = line[start:end]
             values.append(slot.strip())
             # Check if number row has leading space
-            if slot[0] == ' ' and slot.strip() not in '+*':
+            if slot[0] == " " and slot.strip() not in "+*":
                 is_left_padded = True
 
         result.append((values, not is_left_padded))
@@ -42,7 +44,7 @@ def transpose_cols_to_rows_with_direction(input: List[str]) -> List[Tuple[List[s
     return result
 
 
-def transpose_col_values_to_row_values(input: List[str]) -> List[str]:
+def transpose_col_values_to_row_values(input: List[str]) -> List[List[str]]:
     row_input = transpose_cols_to_rows_with_direction(input)
     output = []
     for values, is_forward in row_input:

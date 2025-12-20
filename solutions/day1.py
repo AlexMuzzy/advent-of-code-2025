@@ -2,7 +2,7 @@ import math
 from typing import List, Tuple
 
 
-def compute_left(amount: int, val: int) -> Tuple[int]:
+def compute_left(amount: int, val: int) -> Tuple[int, int]:
     if not amount > val:
         result = val - amount
         count = 1 if result == 0 else 0
@@ -12,7 +12,7 @@ def compute_left(amount: int, val: int) -> Tuple[int]:
     result = calc % 100
 
     if result == 100:
-        return 0
+        return (0, 0)
 
     if val == 0:
         count = amount // 100
@@ -22,7 +22,7 @@ def compute_left(amount: int, val: int) -> Tuple[int]:
     return (result, count)
 
 
-def compute_right(amount: int, val: int) -> Tuple[int]:
+def compute_right(amount: int, val: int) -> Tuple[int, int]:
     if not amount + val > 99:
         result = val + amount
         count = 1 if result == 0 else 0
@@ -38,7 +38,7 @@ def compute_right(amount: int, val: int) -> Tuple[int]:
 
 def compute_amount(
     direction: str, amount: int, val: int, count_ticks: bool = False
-) -> Tuple[int]:
+) -> Tuple[int, int]:
     count = 0
     if direction == "L":
         (result, calc) = compute_left(amount, val)

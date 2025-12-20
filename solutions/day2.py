@@ -17,7 +17,7 @@ def solve_day2_part1(input: str) -> int:
     return sumOfInvalidIds
 
 
-def solve_day2_part2(input: str) -> str:
+def solve_day2_part2(input: str) -> int:
     sum_of_invalid_ids = 0
     separated_list = input.split(",")
 
