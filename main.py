@@ -1,11 +1,13 @@
 from os import path
 from typing import Optional
+
 from solutions.day1 import solve_day1
-from solutions.day2 import solve_day2_part2, solve_day2_part1
+from solutions.day2 import solve_day2_part1, solve_day2_part2
 from solutions.day3 import solve_day3
 from solutions.day4 import solve_day4_part1, solve_day4_part2
 from solutions.day5 import solve_day5_part1, solve_day5_part2
 from solutions.day6 import solve_day6_part1, solve_day6_part2
+from solutions.day7 import solve_day7_part1
 
 
 def get_file_input_by_lines(day: int, is_sample: Optional[bool] = False):
@@ -69,6 +71,11 @@ def main():
 
     print(f"Day 6 - part 2: {solve_day6_part2(day6_input)}")
     print(f"Day 6 - part 2 - sample: {solve_day6_part2(day6_sample_input)}")
+
+    day7_input = get_file_input_by_lines(7)
+    day7_sample_input = get_file_input_by_lines(7, True)
+    # print(f"Day 7 - part 1: {solve_day7_part1(day7_input)}")
+    print(f"Day 7 - part 1 - sample: {solve_day7_part1(day7_sample_input)}")
 
 
 if __name__ == "__main__":
