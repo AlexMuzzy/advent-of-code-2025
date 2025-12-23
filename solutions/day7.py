@@ -5,21 +5,27 @@ def traverse_beam(
     input: List[str], beams: Set[Tuple[int, int]], coords: Tuple[int, int], count: int
 ) -> int:
     (x, y) = coords
-    for idx, line in enumerate(input[x + 1 :]):
+    for idx, line in enumerate(input[x:]):
         current_char = line[y]
-        print(f"x={x + idx} y={y} current_char={current_char}")
+        current_x = x + idx
         if current_char == "^":
-            coords1 = idx, y - 1
-            coords2 = idx, y + 1
-            count = count + 1
+            coords1 = current_x, y - 1
+            coords2 = current_x, y + 1
+            split_performed = False
 
             if coords1 not in beams:
+                split_performed = True
                 beams.add(coords1)
                 count = traverse_beam(input, beams, coords1, count)
 
             if coords2 not in beams:
+                split_performed = True
                 beams.add(coords2)
                 count = traverse_beam(input, beams, coords2, count)
+
+            # This accounts for the edge case where a splitter could be hit but both splits have already been traversed.
+            if split_performed:
+                count = count + 1
 
             # Beam has now been split
             break

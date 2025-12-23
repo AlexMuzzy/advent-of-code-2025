@@ -74,7 +74,7 @@ def main():
 
     day7_input = get_file_input_by_lines(7)
     day7_sample_input = get_file_input_by_lines(7, True)
-    # print(f"Day 7 - part 1: {solve_day7_part1(day7_input)}")
+    print(f"Day 7 - part 1: {solve_day7_part1(day7_input)}")
     print(f"Day 7 - part 1 - sample: {solve_day7_part1(day7_sample_input)}")
 
 
