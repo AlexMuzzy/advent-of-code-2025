@@ -1,3 +1,4 @@
+from functools import lru_cache
 from typing import List, Set, Tuple
 
 
@@ -42,5 +43,26 @@ def solve_day7_part1(input: List[str]) -> int:
     beams.add(coords)
 
     count = traverse_beam(input, beams, coords, count)
+
+    return count
+
+
+def solve_day7_part2(input: List[str]) -> int:
+    # Figure out location of starting value
+    x, y = 0, input[0].index("S")
+
+    @lru_cache(None)
+    def traverse_beam_by_path(x: int, y: int) -> int:
+        for idx, line in enumerate(input[x:]):
+            current_char = line[y]
+            current_x = x + idx
+            if current_char == "^":
+                return traverse_beam_by_path(current_x, y - 1) + traverse_beam_by_path(
+                    current_x, y + 1
+                )
+
+        return 1
+
+    count = traverse_beam_by_path(x, y)
 
     return count
